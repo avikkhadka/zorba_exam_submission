@@ -1,0 +1,9 @@
+Assignment for 17/09/2025
+-------------------------
+We have 2 entity called
+1)Passenger(passenger_id, passenger_name, passenger_mobile, passenger_email, passenger_dob)
+2)ReservationTicket (ticket_id, source_station, dest_station, cost)
+
+We need create relation between these 2 entity.
+Consider in one reservastion many passenger can travel.
+Whereas for passenger can hold many reservation tickets.

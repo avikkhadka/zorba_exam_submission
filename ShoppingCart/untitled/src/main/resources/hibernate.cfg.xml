@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Connection pool size -->
+        <property name="connection.pool_size">10</property>
+
+        <!-- Providing driver class name -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- Providing jdbc url to connect with database -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/Hibernate_Exam</property>
+
+        <!-- Providing DB username to connect to DB-->
+        <property name="connection.username">root</property>
+
+        <!-- DB Password to connect to DB-->
+        <property name="connection.password">echoRoot</property>
+
+        <!-- Helps to convert java object to corresponding SQL query  -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- property helps to see the sql query that has been converted from java object and get executed to DB-->
+        <property name="show_sql">true</property>
+
+        <!-- which indicates when at the start of server / execution all the DB tables needs to be re-created or not  -->
+        <!--
+            1. Create - it will drop all the table and re-create at each execution
+            2. update - Once table created will never drop it, if table doesn't exists then it will recreate the table
+            3. validate - it is not going to drop any table, rather keep validating if any changes happen in the table / entity
+        -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Set the current session context  -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- For XML Based we need to register the map[ping file here -->
+        <!--        <mapping resource="hbm_file/student.hbm.xml"/>-->
+        <!--        <mapping resource="hbm_file/course.hbm.xml"/>-->
+        <!--        <mapping resource="hbm_file/customer.hbm.xml"/>-->
+        <!--        <mapping resource="hbm_file/bankaccount.hbm.xml"/>-->
+        <!--        <mapping resource="hbm_file/resident.hbm.xml"/>-->
+        <!--        <mapping resource="hbm_file/passport.hbm.xml"/>-->
+    </session-factory>
+</hibernate-configuration>
