@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Connection pool size -->
+        <property name="connection.pool_size">10</property>
+
+        <!-- Providing driver class name -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- Providing jdbc url to connect with database -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/Hibernate_Exam</property>
+
+        <!-- Providing DB username to connect to DB-->
+        <property name="connection.username">root</property>
+
+        <!-- DB Password to connect to DB-->
+        <property name="connection.password">echoRoot</property>
+
+        <!-- Helps to convert java object to corresponding SQL query  -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- property helps to see the sql query that has been converted from java object and get executed to DB-->
+        <property name="show_sql">true</property>
+
+
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Set the current session context  -->
+        <property name="current_session_context_class">thread</property>
+        <mapping class="org.example.entity.Passenger"/>
+        <mapping class="org.example.entity.GeneralPassenger"/>
+        <mapping class="org.example.entity.SeniorCitizenPassenger"/>
+        <mapping class="org.example.entity.PhysicallyHandicappedPassenger"/>
+
+    </session-factory>
+</hibernate-configuration>
