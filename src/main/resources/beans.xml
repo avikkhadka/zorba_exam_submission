@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ===== RentOfFlat Beans ===== -->
+    <bean id="rentOfFlat1" class="org.example.RentFlat.RentOfFlat">
+        <constructor-arg value="101"/>
+        <constructor-arg value="Sunshine One BHK"/>
+    </bean>
+    <bean id="oneBHKFlat" class="org.example.RentFlat.RentOfOneBHKFlat">
+        <constructor-arg ref="rentOfFlat1"/>
+    </bean>
+
+    <bean id="rentOfFlat2" class="org.example.RentFlat.RentOfFlat">
+        <constructor-arg value="102"/>
+        <constructor-arg value="Sunshine Two BHK"/>
+    </bean>
+    <bean id="twoBHKFlat" class="org.example.RentFlat.RentOfTwoBHKFlat">
+        <property name="rentOfFlat" ref="rentOfFlat2"/>
+    </bean>
+
+    <bean id="rentOfFlat3" class="org.example.RentFlat.RentOfFlat">
+        <constructor-arg value="103"/>
+        <constructor-arg value="Sunshine Three BHK"/>
+    </bean>
+    <bean id="threeBHKFlat" class="org.example.RentFlat.RentOfThreeBHKFlat">
+        <constructor-arg ref="rentOfFlat3"/>
+    </bean>
+
+    <!-- ===== SelfOwnedFlat Beans ===== -->
+    <bean id="selfOwnedFlat1" class="org.example.SelfOwned.SelfOwnedFlat">
+        <constructor-arg value="301"/>
+        <constructor-arg value="SelfOwned One BHK Flat"/>
+    </bean>
+    <bean id="oneBHKSelfOwned" class="org.example.SelfOwned.SelfOwnedOneBHKFlat">
+        <constructor-arg ref="selfOwnedFlat1"/>
+    </bean>
+
+    <bean id="selfOwnedFlat2" class="org.example.SelfOwned.SelfOwnedFlat">
+        <constructor-arg value="302"/>
+        <constructor-arg value="SelfOwned Two BHK Flat"/>
+    </bean>
+    <bean id="twoBHKSelfOwned" class="org.example.SelfOwned.SelfOwnedTwoBHKFlat">
+        <property name="flat" ref="selfOwnedFlat2"/>
+    </bean>
+
+
+    <bean id="selfOwnedFlat3" class="org.example.SelfOwned.SelfOwnedFlat">
+        <constructor-arg value="303"/>
+        <constructor-arg value="SelfOwned Three BHK Flat"/>
+    </bean>
+    <bean id="threeBHKSelfOwned" class="org.example.SelfOwned.SelfOwnedThreeBHKFlat">
+        <constructor-arg ref="selfOwnedFlat3"/>
+    </bean>
+
+</beans>
