@@ -23,40 +23,42 @@ public class HibernateConfig {
     @Autowired
     private Environment env;
 
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName(env.getProperty("db.driver")); // com.mysql.cj.jdbc.Driver
-        ds.setUrl(env.getProperty("db.url"));                 // jdbc:mysql://localhost:3306/your_db
+        ds.setDriverClassName(env.getProperty("db.driver"));
+        ds.setUrl(env.getProperty("db.url"));
         ds.setUsername(env.getProperty("db.username"));
         ds.setPassword(env.getProperty("db.password"));
         return ds;
     }
 
-
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
+    public LocalSessionFactoryBean sessionFactoryBean() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-
-        // Scan the package containing all entities (Passenger etc.)
         sessionFactory.setPackagesToScan("flightbookingsystem.entity");
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
         hibernateProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         hibernateProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        hibernateProperties.put("hibernate.connection.pool_size", env.getProperty("hibernate.connection.pool_size"));
 
         sessionFactory.setHibernateProperties(hibernateProperties);
-
         return sessionFactory;
     }
 
+    @Bean
+    @Autowired
+    public SessionFactory sessionFactory(LocalSessionFactoryBean sessionFactoryBean) {
+        return sessionFactoryBean.getObject();
+    }
 
     @Bean
+    @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-        return new HibernateTransactionManager(sessionFactory);
+        HibernateTransactionManager txManager = new HibernateTransactionManager();
+        txManager.setSessionFactory(sessionFactory);
+        return txManager;
     }
 }
